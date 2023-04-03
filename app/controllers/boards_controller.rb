@@ -14,7 +14,7 @@ class BoardsController < ApplicationController
     board = BoardGenerator.generate_board(params[:rows].to_i, params[:columns].to_i, params[:mines].to_i)
     board_params = { name: params[:name], email: params[:email], board: board }
     @board = Board.new(board_params)
-    if @board.save 
+    if @board.save
     redirect_to board_path(@board)
     else
       render :new
@@ -23,6 +23,7 @@ class BoardsController < ApplicationController
 
   def show
     @board = Board.find(params[:id])
+    @board.update(playing: true)
   end
 
   def reveal_cell
@@ -30,6 +31,7 @@ class BoardsController < ApplicationController
     col = params[:col].to_i
     @board = Board.find(params[:id])
     @board.update_cell(row, col)
+
   end
 
   private

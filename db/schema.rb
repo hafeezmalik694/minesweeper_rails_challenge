@@ -20,6 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_03_063637) do
     t.string "rows"
     t.string "columns"
     t.string "mines"
+    t.boolean "playing", default: false
     t.json "board"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

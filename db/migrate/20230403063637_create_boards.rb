@@ -6,6 +6,7 @@ class CreateBoards < ActiveRecord::Migration[7.0]
       t.string :rows
       t.string :columns
       t.string :mines
+      t.boolean :playing, default: false
       t.json :board
       t.timestamps
     end

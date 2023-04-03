@@ -27,11 +27,11 @@
 </style>
 <div>
     <h1><%= @board.name %></h1>
-
     <p>Created by <%= @board.email %></p>
     <div class="d-flex justify-content-center table-design">
         <div id="board">
             <%= render "board", board: @board.board %>
         </div>
     </div>
+    <%= link_to "Listing Games", boards_path, class: "btn btn-secondary"%>
 </div>

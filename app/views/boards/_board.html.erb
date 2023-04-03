@@ -10,7 +10,7 @@
             <td class="cell number" data-row="<%= i %>" data-col="<%= j %>"><%= cell['adjacent_mines'] %></td>
             <% end %>
             <% else %>
-            <td class="cell "></td>
+            <td class="cell" data-row="<%= i %>" data-col="<%= j %>"></td>
             <% end %>
             <%end%>
         </tr>
@@ -24,7 +24,7 @@
         var row = $(this).data('row');
         var col = $(this).data('col');
         var boardId = "<%= @board.id %>";
-        console.log("ajax request sent......");
+        console.log("ajax request sent against......", row, col, boardId);
 
         $.ajax({
             type: 'POST',

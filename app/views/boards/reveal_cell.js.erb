@@ -1,1 +1,4 @@
+<% unless @board.playing? %>
+alert('Game Over!')
+<% end %>
 $("#board").html('<%= escape_javascript(render :partial => "board" , locals: { board: @board.board} ) %>');
