@@ -3,22 +3,26 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
+The setups steps expect following tools installed on the system.
 
-* Ruby version
+Ruby 3.0.0
+Rails 7.0.4
+Database Postgresql
 
-* System dependencies
+1. Check out the repository
+   git clone git@github.com:hafeezmalik694/minesweeper_rails_challenge.git
 
-* Configuration
+2. Run this command to install all dependencies and gems.
+   bundle install
 
-* Database creation
+3. Create and setup the database
+   Run the following commands to create and setup the database.
 
-* Database initialization
+   bundle exec rake db:create
+   bundle exec rake db:setup
 
-* How to run the test suite
+4. Start the Rails server
+   You can start the rails server using the command given below.
+   rails s
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+And now you can visit the site with the URL http://localhost:3000
