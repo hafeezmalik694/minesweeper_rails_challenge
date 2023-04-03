@@ -1,0 +1,37 @@
+<style>
+    td {
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        vertical-align: middle;
+        background-color: gray;
+    }
+
+    .mine {
+        background-color: red;
+    }
+
+    .number {
+        background-color: grey;
+    }
+
+    td.blank:hover {
+        background-color: lightgray;
+    }
+
+    .table-style {
+        border: 2px solid darkgray;
+        width: 300px;
+        height: 300px;
+    }
+</style>
+<div>
+    <h1><%= @board.name %></h1>
+
+    <p>Created by <%= @board.email %></p>
+    <div class="d-flex justify-content-center table-design">
+        <div id="board">
+            <%= render "board", board: @board.board %>
+        </div>
+    </div>
+</div>

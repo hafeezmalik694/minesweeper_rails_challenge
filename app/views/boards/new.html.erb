@@ -1,0 +1,20 @@
+<h1>New Board</h1>
+
+<%= form_with(url: boards_path, method: :post) do |form| %>
+<%= form.label :name %>
+<%= form.text_field :name, class: 'form-control' %>
+
+<%= form.label :email %>
+<%= form.email_field :email, class: 'form-control' %>
+
+<%= form.label :rows %>
+<%= form.number_field :rows, min: 1, class: 'form-control' %>
+
+<%= form.label :columns %>
+<%= form.number_field :columns, min: 1, class: 'form-control' %>
+
+<%= form.label :mines %>
+<%= form.number_field :mines, min: 1, class: 'form-control' %>
+
+<%= form.submit "Generate Board" %>
+<% end %>
