@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   root "boards#index"
   resources :boards do
     member do
-      post :reveal_cell
+      patch :reveal_cell
+      patch :add_flag
     end
   end
 end

@@ -10,9 +10,8 @@ class BoardsController < ApplicationController
 
   def create
     # Generates and saves the board to the database
-
     board = BoardGenerator.generate_board(params[:rows].to_i, params[:columns].to_i, params[:mines].to_i)
-    board_params = { name: params[:name], email: params[:email], board: board }
+    board_params = { name: params[:name], email: params[:email], columns: params[:columns], rows: params[:rows], board: board }
     @board = Board.new(board_params)
     if @board.save
     redirect_to board_path(@board)
@@ -34,10 +33,11 @@ class BoardsController < ApplicationController
 
   end
 
-  private
-
-  def board_params
-    params.require(:board).permit(:name, :email, :rows, :columns, :mines, :board)
+  def add_flag
+    row = params[:row].to_i
+    col = params[:col].to_i
+    @board = Board.find(params[:id])
+    @board.update_cell_flag(row, col)
   end
 
 end

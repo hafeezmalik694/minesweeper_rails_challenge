@@ -5,10 +5,12 @@
             <% row.each_with_index do |cell, j| %>
             <% if cell["revealed"] %>
             <% if cell['mine'] %>
-            <td class="cell mine" data-row="<%= i %>" data-col="<%= j %>">Bomb</td>
+            <td class="cell mine" data-row="<%= i %>" data-col="<%= j %>">B</td>
             <% else %>
             <td class="cell number" data-row="<%= i %>" data-col="<%= j %>"><%= cell['adjacent_mines'] %></td>
             <% end %>
+            <% elsif cell['flag'] %>
+            <td class="cell green" data-row="<%= i %>" data-col="<%= j %>">F</td>
             <% else %>
             <td class="cell" data-row="<%= i %>" data-col="<%= j %>"></td>
             <% end %>
@@ -27,8 +29,24 @@
         console.log("ajax request sent against......", row, col, boardId);
 
         $.ajax({
-            type: 'POST',
+            type: 'PATCH',
             url: "/boards/" + boardId + "/reveal_cell?row=" + row + "&col=" + col,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr(
+                    'content'))
+            }
+        });
+    });
+
+    $(".cell").dblclick(function () {
+        var row = $(this).data('row');
+        var col = $(this).data('col');
+        var boardId = "<%= @board.id %>";
+        console.log("ajax request sent against......", row, col, boardId);
+
+        $.ajax({
+            type: 'PATCH',
+            url: "/boards/" + boardId + "/add_flag?row=" + row + "&col=" + col,
             beforeSend: function (xhr) {
                 xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr(
                     'content'))
