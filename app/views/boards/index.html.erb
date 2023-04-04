@@ -8,18 +8,14 @@
             <th>Name</th>
             <th>Email</th>
             <th>Created At</th>
-            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
         <% @boards.each do |board| %>
         <tr>
-            <td><%= board.name %></td>
+            <td><%= link_to board.name, board_path(board) %></td>
             <td><%= board.email %></td>
             <td><%= board.created_at %></td>
-            <td>
-                <%= link_to "Show", board_path(board), class: "btn btn-secondary" %>
-            </td>
         </tr>
         <% end %>
     </tbody>

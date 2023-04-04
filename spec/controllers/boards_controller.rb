@@ -80,23 +80,46 @@ RSpec.describe BoardsController, type: :controller do
     end
   
     describe "post #reveal_cell" do
-      let(:board) { FactoryBot.create(:board) }
+      let(:board) { FactoryBot.create(:board, :with_data) }
       let(:row) { 1 }
       let(:col) { 1 }
   
       it "assigns the requested board to @board" do
-        post :reveal_cell, params: { id: board.id, row: row, col: col }
+        patch :reveal_cell, params: { id: board.id, row: row, col: col }
         expect(assigns(:board)).to eq(board)
       end
   
       it "updates the cell at the specified row and column" do
         expect_any_instance_of(Board).to receive(:update_cell).with(row, col)
-        post :reveal_cell, params: { id: board.id, row: row, col: col }
+        patch :reveal_cell, params: { id: board.id, row: row, col: col }
+        expect(board.reload.board[row][col]['revealed']).to be_truthy
       end
   
       it "responds with a JS template" do
-        post :reveal_cell, params: { id: board.id, row: row, col: col }, format: :js
-        expect(response.content_type).to eq "text/javascript"
+        patch :reveal_cell, params: { id: board.id, row: row, col: col }, format: :js
+        expect(response.content_type).to eq "text/javascript; charset=utf-8"
+      end
+    end
+
+    describe "post #add_flag" do
+      let(:board) { FactoryBot.create(:board, :with_data) }
+      let(:row) { 1 }
+      let(:col) { 1 }
+  
+      it "assigns the requested board to @board" do
+        patch :add_flag, params: { id: board.id, row: row, col: col }
+        expect(assigns(:board)).to eq(board)
+      end
+  
+      it "updates the cell at the specified row and column" do
+        expect_any_instance_of(Board).to receive(:update_cell).with(row, col)
+        patch :add_flag, params: { id: board.id, row: row, col: col }
+        expect(board.reload.board[row][col]['flag']).to be_truthy
+      end
+  
+      it "responds with a JS template" do
+        patch :add_flag, params: { id: board.id, row: row, col: col }, format: :js
+        expect(response.content_type).to eq "text/javascript; charset=utf-8"
       end
     end
   end
