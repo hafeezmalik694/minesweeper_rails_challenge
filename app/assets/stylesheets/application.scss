@@ -14,3 +14,47 @@
  *= require_self
  */
 @import 'bootstrap';
+table {
+    border-collapse: separate;
+    border-spacing: 7px 7px;
+}
+
+td {
+    position: relative;
+    z-index: 1;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: gray;
+    box-shadow: 2px 2px 2px gray;
+}
+
+.container h1,
+p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mine {
+    background-color: red;
+}
+
+.number {
+    background-color: grey;
+}
+
+.green {
+    background-color: green;
+}
+
+td.blank:hover {
+    background-color: lightgray;
+}
+
+.table-style {
+    width: 300px;
+    height: 300px;
+}
+  

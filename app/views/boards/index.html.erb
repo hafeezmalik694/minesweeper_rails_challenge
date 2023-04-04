@@ -1,22 +1,26 @@
-<h1>Minesweeper Boards</h1>
-
-<%= link_to "Generate Board", new_board_path, class: "btn btn-primary" %>
-
-<table class="table table-bordered mt-3">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Created At</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @boards.each do |board| %>
-        <tr>
-            <td><%= link_to board.name, board_path(board) %></td>
-            <td><%= board.email %></td>
-            <td><%= board.created_at %></td>
-        </tr>
-        <% end %>
-    </tbody>
-</table>
+<div class="container">
+    <div class="d-flex justify-cetent-center">
+        <h3>Minesweeper Boards</h3>
+    </div>
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Created At</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @boards.each do |board| %>
+            <tr>
+                <td><%= link_to board.name, board_path(board) %></td>
+                <td><%= board.email %></td>
+                <td><%= board.created_at %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-center">
+        <%= link_to "Generate Board", new_board_path, class: "btn btn-primary" %>
+    </div>
+</div>
